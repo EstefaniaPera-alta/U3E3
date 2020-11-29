@@ -1,0 +1,89 @@
+package Unidad3;
+
+import java.util.Scanner;
+
+public class Ejercicio3 {
+    NodoPila3 cima;
+    int tamanio;
+
+    public boolean estaVscia()
+    {
+      return cima==null;
+    }
+    public void Empujar(int numero)
+    {
+        NodoPila3 nodo = new NodoPila3(numero);
+        nodo.siguiente = cima;
+        cima = nodo;
+        tamanio++;
+
+    }
+    public int SacarPila()
+    {
+        int auxiliar = cima.elemento;
+        cima = cima.siguiente;
+        tamanio--;
+        return auxiliar;
+    }
+    public void  mostrarPila(int i)
+    {
+        int y=i;
+        NodoPila3 recorre = cima;
+        while(recorre!=null)
+        {
+            System.out.println(y+". "+recorre.elemento);
+            recorre = recorre.siguiente;
+            y--;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner leer = new Scanner(System.in);
+        int opcion, numero=0, i=1, cont=0;
+        boolean continuar = true;
+        Ejercicio3 pila = new Ejercicio3();
+
+        // PILA: PRIMERO QUE ENTTRA ULTIMO EN SALIR
+
+        while(continuar){
+            System.out.println("Este es el menú \n1.Inserta \n2.Eliminar \n3.Mostrar \n4.Salir");
+            System.out.println("Elige una opcion");
+            opcion = leer.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    System.out.println("10 Numeros aleatorios ingresados");
+                    for (i = 1; i <= 10; i++) {
+                        cont++;
+                        int valorE = (int) (Math.random() * (500 - 50) + 50);
+                        numero = valorE;
+                        pila.Empujar(numero);
+                        System.out.println(cont+". "+numero);
+                    }    
+                break;
+                case 2:
+                    if(numero==0){
+                        System.out.println("Pila vacia");
+                    }else{
+                        pila.SacarPila();
+                        cont--;
+                    }
+                break;
+                case 3:
+                    if(numero==0)
+                    {
+                        pila.estaVscia();
+                    }else{
+                        pila.mostrarPila(cont);
+                    }
+                break;
+                case 4:
+                    continuar = false;
+                break;
+                default: System.out.println("ERROR.");
+                break;
+            }
+        }
+
+    }
+}
