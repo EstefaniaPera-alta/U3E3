@@ -1,0 +1,11 @@
+package Unidad3;
+
+public class NodoPila3 {
+    int elemento;
+    NodoPila3 siguiente;
+
+public NodoPila3(int elemento) {
+    this.elemento =elemento;
+    siguiente = null;
+}
+}
